@@ -8,13 +8,16 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.20.2",
-    "@babel/preset-env": "^7.20.2"
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.20.2",
+    "@babel/preset-env": "7.20.2",
+    "mocha": "10.1.0",
+    "supertest": "6.3.1"
   },
   "scripts": {
     "build": "babel src/index.js -d dist",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/index.js",
+    "test": "mocha --exit true"
   },
   "repository": {
     "type": "git",
