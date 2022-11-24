@@ -6,9 +6,8 @@ ENV NODE_ENV=production
 COPY src .
 COPY package.json .
 COPY package-lock.json .
-COPY dist dist
 
-RUN npm install --omit=dev
+RUN npm install
 
 EXPOSE 8080
-CMD ["node", "dist/index.js"]
+CMD ["node", "index.js"]

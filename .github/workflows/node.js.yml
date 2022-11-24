@@ -14,6 +14,7 @@ jobs:
   modules_preprocess:
     name: Install dependencies
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16
@@ -38,8 +39,8 @@ jobs:
           path: dependencies.tar
           retention-days: 1
 
-  build:
-    name: Build the project
+  quality_assurance:
+    name: Apply lint and test processes to the source code
     runs-on: ubuntu-latest
     needs: modules_preprocess
     timeout-minutes: 3
@@ -58,5 +59,12 @@ jobs:
         run: tar -xf dependencies.tar
       - run: npm run lint
       - run: npm test
-      - run: npm run build
+
+  docker_build:
+    name: Build the production docker image
+    runs-on: ubuntu-latest
+    needs: quality_assurance
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
       - run: docker build . -t greenict/demo-api
