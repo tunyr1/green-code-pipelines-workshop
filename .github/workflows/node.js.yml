@@ -11,10 +11,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  modules_preprocess:
+    name: Install dependencies
     runs-on: ubuntu-latest
-    timeout-minutes: 3
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16
@@ -30,6 +29,28 @@ jobs:
       - name: Install npm dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit --ignore-scripts
+      - name: Upload node_modules artifact for later use
+        uses: actions/upload-artifact@v3
+        with:
+          name: modules
+          path: node_modules
+
+  build:
+    name: Build the project
+    runs-on: ubuntu-latest
+    needs: modules_preprocess
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: modules
       - run: npm run lint
       - run: npm test
       - run: npm run build
