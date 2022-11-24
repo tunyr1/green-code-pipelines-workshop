@@ -23,7 +23,7 @@
     "build": "babel src/index.js -d dist",
     "lint": "./node_modules/.bin/eslint src/*.js",
     "start": "npm run build && node dist/index.js",
-    "test": "mocha"
+    "test": "mocha --exit true"
   },
   "repository": {
     "type": "git",
