@@ -29,11 +29,13 @@ jobs:
       - name: Install npm dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit --ignore-scripts
+      - name: Compress dependencies
+        run: tar -cvf dependencies.tar node_modules
       - name: Upload node_modules artifact for later use
         uses: actions/upload-artifact@v3
         with:
           name: modules
-          path: node_modules
+          path: dependencies.tar
           retention-days: 1
 
   build:
@@ -52,6 +54,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: modules
+      - name: Extract dependencies
+        run: tar -xf dependencies.tar
       - run: npm run lint
       - run: npm test
       - run: npm run build
