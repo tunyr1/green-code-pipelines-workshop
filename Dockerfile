@@ -8,7 +8,8 @@ COPY package.json .
 COPY package-lock.json .
 COPY database.sqlite .
 
-RUN npm install
+COPY node_modules node_modules
+RUN npm prune --omit=dev
 COPY src .
 
 CMD ["node", "index.js"]
