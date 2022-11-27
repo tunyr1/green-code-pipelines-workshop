@@ -6,6 +6,7 @@ ENV NODE_ENV=production
 COPY src .
 COPY package.json .
 COPY package-lock.json .
+COPY database.sqlite .
 
 RUN npm install
 
