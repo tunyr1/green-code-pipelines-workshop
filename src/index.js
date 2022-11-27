@@ -9,99 +9,100 @@ const db = new Database('database.sqlite', { readonly: true, fileMustExist: true
 
 const _ = require('lodash')
 
+const respond = (res, status, body) => {
+  res.contentType('application/json')
+  res.status(status)
+  res.send(body)
+}
+
 const getTemperature = async (lat, long) => {
   const response = await axios.get(`http://127.0.0.1:3001/temperature?lat=${lat}&long=${long}`)
   const temperature = response.data.temperature
   return temperature
 }
 
-const getTemperatureForCountry = async ({ name, lat, long }) => {
-  const temperature = await getTemperature(lat, long)
-  return { name, temperature }
+const getTemperatures = async (coordinates) => {
+  const temperatures = []
+  for (let i = 0; i < coordinates.length; i++) {
+    const { lat, long } = coordinates[i]
+    const temperature = await getTemperature(lat, long)
+    temperatures[i] = { temperature }
+  }
+  return temperatures
 }
 
-const getTemperatureForCity = async ({ city, country, lat, long }) => {
-  const temperature = await getTemperature(lat, long)
-  return { city, country, temperature }
-}
-
-const getCoordinates = async ({ city, country }) => {
+const getCoordinates = async (cityName, countryCode) => {
   const url = 'http://127.0.0.1:3002/geocode'
-  const response = await axios.get(url, { params: { q: `${city},${country}` } })
+  const response = await axios.get(url, { params: { q: `${cityName},${countryCode}` } })
   const coordinates = response.data
   return coordinates
 }
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  respond(res, 200, { msg: 'Hello World!' })
 })
 
 app.get('/country', (req, res) => {
-  res.contentType('application/json')
-
   const query = db.prepare('select ctr.name_common as name, cca2 as code from country ctr')
   const rows = query.all()
-  res.send(rows)
+  respond(res, 200, rows)
 })
 
 app.get('/temperature/country/:countryCode', async (req, res) => {
-  res.contentType('application/json')
-
   const countryCode = req.params.countryCode
 
-  const query = db.prepare('select name_common as name, lat, long from country where cca2 like $countryCode')
+  const query = db.prepare('select name_common as country, lat, long from country where cca2 like $countryCode')
   const row = query.get({ countryCode })
 
-  if (row === undefined) {
-    res.status(404)
-    res.send()
+  if (row) {
+    const { country, lat, long } = row
+    const temperature = await getTemperature(lat, long)
+    respond(res, 200, { country, temperature })
   } else {
-    const result = await getTemperatureForCountry(row)
-    res.send(result)
+    respond(res, 404)
   }
 })
 
 app.get('/temperature/country/:countryCode/capital', async (req, res) => {
-  res.contentType('application/json')
-
   const countryCode = req.params.countryCode
 
-  const query = db.prepare('select cap.name as name from capital cap join country ctry on ctry.id = cap.country_id where ctry.cca2 like $countryCode')
+  const query = db.prepare('select cap.name as city_name from capital cap join country ctry on ctry.id = cap.country_id where ctry.cca2 like $countryCode')
   const row = query.get({ countryCode })
 
   if (row) {
-    const cityName = row.name
-    const { lat, long } = await getCoordinates({ city: cityName, country: countryCode })
-    const result = await getTemperatureForCity({ city: cityName, country: countryCode, lat, long })
-    res.send(result)
+    const cityName = row.city_name
+    const { lat, long } = await getCoordinates(cityName, countryCode)
+    const temperature = await getTemperature(lat, long)
+    respond(res, 200, { city: cityName, country: countryCode, temperature })
   } else {
-    res.status(404)
-    res.send()
+    respond(res, 404)
   }
 })
 
 app.get('/temperature/region/:regionName/country', async (req, res) => {
-  res.contentType('application/json')
-
   const region = req.params.regionName
 
-  const query = db.prepare('select ctr.name_common as name, lat, long from country ctr where region like $region or subregion like $region')
+  const query = db.prepare('select ctr.name_common as country, lat, long from country ctr where region like $region or subregion like $region')
   const rows = query.all({ region })
-  const results = await Promise.all(rows.map(getTemperatureForCountry))
-  res.send(results)
+
+  const temperatures = await getTemperatures(rows)
+  const countryNames = rows.map((row) => {
+    return { country: row.country }
+  })
+  const result = _.merge(countryNames, temperatures)
+  respond(res, 200, result)
 })
 
 app.get('/temperature/region/:regionName/capital', async (req, res) => {
-  res.contentType('application/json')
-
   const region = req.params.regionName
 
   const query = db.prepare('select cap.name as city, co.cca2 as country from capital cap join country co on co.id = cap.country_id where co.region like $region or co.subregion like $region')
   const capitals = query.all({ region })
-  const coordinates = await Promise.all(capitals.map(getCoordinates))
-  const capitalsWithCoordinates = _.merge(capitals, coordinates)
-  const results = await Promise.all(capitalsWithCoordinates.map(getTemperatureForCity))
-  res.send(results)
+
+  const coordinates = await Promise.all(capitals.map(({ city, country }) => getCoordinates(city, country)))
+  const temperatures = await getTemperatures(coordinates)
+  const result = _.merge(capitals, temperatures)
+  respond(res, 200, result)
 })
 
 app.listen(port, () => {

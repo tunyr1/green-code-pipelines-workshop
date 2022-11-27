@@ -5,13 +5,20 @@ const port = 3001
 const Database = require('better-sqlite3');
 const db = new Database('weather.sqlite', {readonly: true, fileMustExist: true});
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+const respond = async (res, status, body) => {
+    await sleep(100); // Simulate network latency
+    res.contentType('application/json');
+    res.status(status);
+    res.send(body)
+}
+
+app.get('/', async (req, res) => {
+    await respond(res, 200, {msg: 'Hello World!'});
 });
 
-app.get('/temperature', (req, res) => {
-    res.contentType('application/json');
-    
+app.get('/temperature', async (req, res) => {
     const lat = req.query.lat;
     const long = req.query.long;
 
@@ -19,13 +26,12 @@ app.get('/temperature', (req, res) => {
     const row = query.get({lat, long});
 
     if (row) {
-        res.send(row);
+        await respond(res, 200, row);
     } else {
-        res.status(404);
-        res.send();
+        await respond(res, 404);
     }
 });
 
 app.listen(port, () => {
-  console.log(`Weather API listening on port ${port}`)
+  console.log(`Mock weather API listening on port ${port}`)
 })

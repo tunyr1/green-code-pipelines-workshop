@@ -4,7 +4,7 @@ var request = require('supertest')
 describe('Testing hello world response', function () {
   describe('GET /', function () {
     it('should respond with message', function (done) {
-      request(app).get('/').expect(200, 'Hello World!', done)
+      request(app).get('/').expect(200, '{"msg":"Hello World!"}', done)
     })
   })
 
