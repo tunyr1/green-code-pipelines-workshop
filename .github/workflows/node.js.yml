@@ -3,6 +3,11 @@ name: Demo CI
 on:
   push:
     branches: ['main']
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - 'exercises/**'
   pull_request:
     branches: ['main']
 
