@@ -2,7 +2,7 @@ const axios = require('axios')
 
 const express = require('express')
 const app = (module.exports = express())
-const port = 3000
+const port = 8080
 
 const Database = require('better-sqlite3')
 const db = new Database('database.sqlite', { readonly: true, fileMustExist: true })

@@ -66,8 +66,14 @@ jobs:
   docker_build:
     name: Build the production docker image
     runs-on: ubuntu-latest
-    needs: quality_assurance
+    needs: modules_preprocess
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: modules
+      - name: Extract dependencies
+        run: tar -xf dependencies.tar
       - run: docker build . -t greenict/demo-api
