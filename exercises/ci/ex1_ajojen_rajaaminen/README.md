@@ -6,3 +6,6 @@ Alkutilanteessa jatkuva integraatio ajetaan nyt jokaiselle muutokselle haaroista
 - asetetaan ajoille 3 minuutin maksimi aikaraja
 - ei käynnistetä ajoja tilanteissa, joissa vain README.md ja/tai LICENSE tiedostoihin on tullut muutoksia
 - uudet muutokset pull requestin lähdehaaraan peruvat aiemmat keskeneräiset ajot
+
+Bonus: Mitä tapahtuu teet seuraavanlaisen muutoksen package.json tiedostoon
+`"test": "mocha --exit true"` -> "test": "mocha"

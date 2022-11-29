@@ -7,6 +7,6 @@ Tämä kansio sisältää ekosysteemitapaamisen työpajan jatkuvaan integraation
 - varmista, että Github Actions on käytössä oman tunnuksesi alle forkatulle versiolle
 - nyt voit aloittaa tehtävien tekemisen järjestyksessä ex1 alkaen
 
-Ohjeet ja vinkit löytyvät tehtäväkansioiden README:stä ja solutions kansiosta voit tarkistaa ratkaisuehdoituksen.
+Ohjeet ja vinkit löytyvät tehtäväkansioiden README:stä ja solutions kansiosta voit tarkistaa ratkaisuehdoituksen. Seuraavaan tehtävään edetessä ota aina pohjaksi edellisen tehtävän mallivastaus tai oma ratkaisusi.
 
 Apua tehtävien ratkaisuun löydät [Github Actionsin dokumentaatiosta](https://docs.github.com/en/actions).
