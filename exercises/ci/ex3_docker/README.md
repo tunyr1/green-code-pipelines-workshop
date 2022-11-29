@@ -8,7 +8,11 @@ Docker-kuvan luontiin vaikuttaisi menevän eniten aikaa. Tehdään siihen seuraa
 - eristä Docker-kuvan luonti omaksi job:ksi, joka ajetaan aiemman jobin kanssa rinnakkain
 
 Nämä linkit saattavat helpottaa tämän osion tekemistä:
+<br/>
 https://hub.docker.com/_/node/tags?page=1&name=18
+<br/>
 https://github.com/wagoodman/dive
+<br/>
 https://docs.docker.com/build/building/multi-stage/
+<br/>
 https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow
