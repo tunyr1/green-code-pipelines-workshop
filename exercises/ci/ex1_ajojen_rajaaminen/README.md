@@ -8,4 +8,4 @@ Alkutilanteessa jatkuva integraatio ajetaan nyt jokaiselle muutokselle haaroista
 - uudet muutokset pull requestin lähdehaaraan peruvat aiemmat keskeneräiset ajot
 
 Bonus: Mitä tapahtuu teet seuraavanlaisen muutoksen package.json tiedostoon
-`"test": "mocha --exit true"` -> "test": "mocha"
+`"test": "mocha --exit true"` -> `"test": "mocha"`
