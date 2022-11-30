@@ -15,5 +15,7 @@ ab -n 100 -c 10 'http://127.0.0.1:8080/temperature/country/FI/capital'
    (vinkki: haetaanko me esim. jostakin ulkopuolisesta API:sta staattista
     dataa, joka voitaisiin säilöä paikallisesti?)
 
-3) Ratkaise pullonkaula (vaatii tietokantaskeeman muutosta ja datan hakemista
-   yhdestä meidän sovelluksen ulkopuolisesta API-rajapinnasta.)
+3) Ratkaise pullonkaula luomalla skripti, joka 1) lisää tietokantaan kentät
+   pääkaupunkien koordinaattien tallentamiselle 2) hakee pääkaupunkien
+   koordinaatit geokoodaus-apista tietokantaan. Tämän jälkeen muuta koodia niin,
+   että koordinaatit haetaan tietokannasta geokoodaus-apin sijaan.

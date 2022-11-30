@@ -14,4 +14,5 @@ curl 'http://localhost:8080/temperature/region/Europe/capital'
    profilointityökalun avulla (esim. 0x)
 
 3) Kun olet tunnistanut suurimman pullonkaulan, tee siihen korjaus
-   (vinkki: suurin pullonkaula on yhden funktion sisällä)
+   (vinkki: suurin pullonkaula on yhden funktion sisällä. Pohdi lämpötilojen hakua
+   ulkoisesta API:sta.)
