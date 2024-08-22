@@ -8,9 +8,37 @@ Knowit JS Guild presents: Green code pipelines workshop
     - Video contains spoilers: you can use it to get past difficult exercises 
 
 
---------------------------
-🇬🇧 Running the application
---------------------------
+First, you do not need to run this demo app locally to complete thius workshop!
+----------------------------------------------------------------------------
+For this pipeline workshop, 
+
+__we will only do the exercises in  `./exercises/ci`, which are about Docker containers and GitHub Actions__. 
+
+The results are verified on GitHub-hosted runners for the most part. 
+So you don't have to install anything, unless you want to.
+
+The third exercise (`exercises/ci/ex3_docker`) can be easier if you have a local Docker installation, 
+for example you can use the dive tool or Docker desktop to inspect the sizes of each docker layer. 
+
+However, you don't really need to do that, if you don't want to -- you can just make the changes to the Dockerfile and 
+run the GitHub Action, and hope for the best. 
+
+Finally, you can take a look at the solution and check if your answer was correct, pretty close or... 
+maybe today just wasn't your day ¯\_(ツ)_/¯
+
+
+Right, so what are we waiting for?
+----------------------------------
+
+Proceed to the first exercise: [exercises/ci/ex1_ajojen_rajaaminen/README.md](exercises/ci/ex1_ajojen_rajaaminen/README.md)
+
+------------------------------------------------------------------------
+
+# ...
+
+
+🇬🇧 If you nevertheless want to run the application....
+------------------------------------------------------------------------
 
 In order to run the application and the background services it needs, you need the following tools on your computer:
 
@@ -42,9 +70,12 @@ The application itself can be started by running the command:
 npm start
 ```
 
-------------------------
-🇫🇮 Sovelluksen ajaminen
-------------------------
+
+------------------------------------------------------------------------
+
+
+🇫🇮 Jos kaikesta huolimatta haluat käynnistää sovelluksen....
+------------------------------------------------------------------------
 
 Jotta voit ajaa sovellusta ja sen tarvitsemia taustapalveluja tarvitset koneellesi seuraavat työkalut:
 
