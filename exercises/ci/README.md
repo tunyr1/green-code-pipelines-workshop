@@ -11,6 +11,9 @@ Instructions and tips can be found in the README of the assignment folders and y
 You can find help solving tasks in [Github Actions documentation](https://docs.github.com/en/actions).
 
 
+---------------------------------------------------------------------------------
+
+
 # 🇫🇮 Jatkuvan integraation tehtävämoduuli
 
 Tämä kansio sisältää ekosysteemitapaamisen työpajan jatkuvaan integraation liittyvät tehtävät. Helpoiten pääset käyntiin seuraavilla ohjeilla:

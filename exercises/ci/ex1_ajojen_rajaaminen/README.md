@@ -10,7 +10,9 @@ In the initial situation, continuous integration is now run for every change reg
 Bonus: What happens is you make the following change to the package.json file
 `"test": "mocha --exit true"` -> `"test": "mocha"`
 
+
 ---------------------------------------------------------------------------------
+
 
 # 🇫🇮 Harjoitus 1 - Ajojen rajaaminen
 

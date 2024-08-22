@@ -1,7 +1,7 @@
 Knowit JS Guild presents: Green code pipelines workshop
 =======================================================
 
-### Forked shamelessly from: Koura - Green ICT-työpaja
+### Forked shamelessly from: Koura – Green ICT-työpaja
 
 - Original repo: https://github.com/Koura/greenict-tyopaja
 - [Original tieke workshop video (Katsaus käytännön koodioptimoinnin tekniikoihin)](https://www.youtube.com/watch?v=fpWtVumCP80) 
@@ -20,15 +20,24 @@ So you don't have to install anything, unless you want to.
 The third exercise (`exercises/ci/ex3_docker`) can be easier if you have a local Docker installation, 
 for example you can use the dive tool or Docker desktop to inspect the sizes of each docker layer. 
 
-However, you don't really need to do that, if you don't want to -- you can just make the changes to the Dockerfile and 
+However, you don't really need to do that, if you don't want to – you can just make the changes to the Dockerfile and 
 run the GitHub Action, and hope for the best. 
 
 Finally, you can take a look at the solution and check if your answer was correct, pretty close or... 
-maybe today just wasn't your day ¯\_(ツ)_/¯
+maybe today just wasn't your day ¯\_(ツ)_/¯. Just copy the exercise solution and move on. 
 
+### Remember!
 
-Right, so what are we waiting for?
-----------------------------------
+The exercises are here to make your brain think about the general principles of green computing. The key is not in 
+memorising GitHub Actions syntax or mastering the use of its (surprisingly horrible) documentation. Also you might 
+struggle with Docker, but remember that's not the essence of the exercise.
+
+So don't panic if you get stuck, just **copy the solution**, **understand the solution** (at least the main idea) and ask yourself: 
+
+Why would we want to do these things? When would they make sense?
+
+Enough yapping, let's get on with it!
+-------------------------------------
 
 Proceed to the first exercise: [exercises/ci/ex1_ajojen_rajaaminen/README.md](exercises/ci/ex1_ajojen_rajaaminen/README.md)
 
