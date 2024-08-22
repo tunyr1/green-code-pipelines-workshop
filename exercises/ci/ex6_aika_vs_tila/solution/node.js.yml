@@ -22,13 +22,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Use Node.js 18
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4.0.2
         id: npm-cache
         with:
           path: '**/node_modules'
@@ -39,7 +39,7 @@ jobs:
       - name: Compress dependencies
         run: tar -cvf dependencies.tar node_modules
       - name: Upload node_modules artifact for later use
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.6
         with:
           name: modules
           path: dependencies.tar
@@ -52,14 +52,14 @@ jobs:
       matrix:
         task: [lint, test]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Use Node.js 18
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
       - name: Download node_modules artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.8
         with:
           name: modules
       - name: Extract dependencies
@@ -72,9 +72,9 @@ jobs:
     needs: modules_preprocess
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Download node_modules artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.8
         with:
           name: modules
       - name: Extract dependencies

@@ -24,13 +24,13 @@ jobs:
       matrix:
         task: [lint, test]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Use Node.js 18
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4.0.2
         id: npm-cache
         with:
           path: '**/node_modules'
@@ -45,5 +45,5 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - run: docker build . -t greenict/demo-api

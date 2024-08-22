@@ -5,7 +5,7 @@ even if they haven't changed since the last time.
 
 Let's change the situation by enabling caches.
 
-- set actions/setup-node@v4 to use npm cache
+- set actions/setup-node@v4.0.3 to use npm cache
 - cache the contents of the node_modules folder using https://github.com/actions/cache
 - run `npm ci` only if the dependencies are not found in the cache
 
@@ -26,7 +26,7 @@ muuttuneet sitten viime ajon.
 
 Muutetaan tilannetta ottamalla välimuistit käyttöön.
 
-- aseta actions/setup-node@v4 hyödyntämään npm välimuistia
+- aseta actions/setup-node@v4.0.3 hyödyntämään npm välimuistia
 - tallenna node_modules kansion sisältö välimuistiin https://github.com/actions/cache avulla
 - suorita `npm ci` vain mikäli riippuvuuksia ei löydy välimuistista
 
