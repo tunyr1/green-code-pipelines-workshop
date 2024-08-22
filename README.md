@@ -8,7 +8,7 @@ Knowit JS Guild presents: Green code pipelines workshop
     - Video contains spoilers: you can use it to get past difficult exercises 
 
 
-First, you do not need to run this demo app locally to complete thius workshop!
+First, you do not need to run this demo app locally to complete this workshop!
 ----------------------------------------------------------------------------
 For this pipeline workshop, 
 
