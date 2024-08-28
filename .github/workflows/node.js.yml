@@ -2,15 +2,19 @@ name: Demo CI
 
 on:
   push:
-    branches:
-      - "main"
+    branches: ["main"]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
   pull_request:
-    branches:
-      - "main"
+    branches: ["main"]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4.1.7
       - name: Use Node.js 18
