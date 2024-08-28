@@ -39,7 +39,7 @@ Why would we want to do these things? When would they make sense?
 Enough yapping, let's get on with it!
 -------------------------------------
 
-Proceed to the first exercise: [exercises/ci/ex1_ajojen_rajaaminen/README.md](exercises/ci/ex1_ajojen_rajaaminen/README.md)
+Proceed to the exercises: [exercises/ci/README.md](exercises/ci/README.md)
 
 ------------------------------------------------------------------------
 
